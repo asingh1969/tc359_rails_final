@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :movies
+
   #get 'static/cats'
 
   #get 'static/home'

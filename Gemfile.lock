@@ -38,7 +38,7 @@ GEM
     coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1)
+    coffee-script-source (1.8.0)
     erubis (2.7.0)
     execjs (2.4.0)
     ffi (1.9.8-x86-mingw32)
@@ -129,6 +129,8 @@ PLATFORMS
 DEPENDENCIES
   cat_api (~> 0.1.0)
   coffee-rails (~> 4.0.0)
+  coffee-script-source (= 1.8.0)
+  execjs
   jbuilder (~> 2.0)
   jquery-rails
   pg
