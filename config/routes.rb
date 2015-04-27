@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   get '/sign-up' => 'users#new'
   post '/users' => 'users#create'
 
+  get '/add_favorite' => 'movies#favorite_movie'
+  delete '/delete_favorite' => 'movies#destroy_favorite'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

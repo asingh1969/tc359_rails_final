@@ -6,11 +6,13 @@ class MoviesController < ApplicationController
   # GET /movies.json
   def index
     @movies = Movie.all.paginate(page: params[:page], per_page: 5)
+    @fav_mov = current_user.movies
   end
 
   # GET /movies/1
   # GET /movies/1.json
   def show
+    @users = @movie.users
   end
 
   # GET /movies/new
@@ -58,6 +60,25 @@ class MoviesController < ApplicationController
     @movie.destroy
     respond_to do |format|
       format.html { redirect_to movies_url, notice: 'Movie was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def favorite_movie
+    @favorite = Favorite.new(user_id: current_user.id, movie_id: params[:movie_id])
+
+      if @favorite.save
+        redirect_to '/movies', notice: 'Favorite was successfully added.'
+      else
+        redirect_to '/movies', notice: 'Movie is already Favorite'
+      end
+    end
+
+  def destroy_favorite
+    @favorite = Favorite.find_by(user_id: current_user.id, movie_id: params[:movie_id])
+    @favorite.destroy
+    respond_to do |format|
+      format.html { redirect_to movies_url, notice: 'Favorite was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -12,16 +12,17 @@
 
   <tbody>
     <% @movies.each do |movie| %>
-      <tr>
-        <td><%= movie.title %></td>
-        <td><%= movie.rating %></td>
-        <td><%= movie.release_date %></td>
-        <td><%= link_to 'Show', movie %></td>
-        <% if user_signed_in? %>
-          <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-          <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
+    <tr>
+      <td><%= movie.title %></td>
+      <td><%= movie.rating %></td>
+      <td><%= movie.release_date %></td>
+      <td><%= link_to 'Show', movie %></td>
+      <% if user_signed_in? %>
+      <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+      <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Favorite', add_favorite_path(movie_id: movie.id) %></td>
+      <% end %>
+    </tr>
     <% end %>
   </tbody>
 </table>
@@ -31,3 +32,32 @@
 <% if user_signed_in? %>
 <%= link_to 'New Movie', new_movie_path %>
 <% end %>
+
+<br>
+
+<h1>Favorites</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Rating</th>
+      <th>Release date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fav_mov.each do |fav| %>
+    <tr>
+      <td><%= fav.title %></td>
+      <td><%= fav.rating %></td>
+      <td><%= fav.release_date %></td>
+      <td><%= link_to 'Show', fav %></td>
+      <td><%= link_to 'Destroy', delete_favorite_path(movie_id: fav.id), method: :delete, data: { confirm: 'Are you sure?' }%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br><br>
