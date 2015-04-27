@@ -7,26 +7,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<ul>
-  <li><%= link_to 'Home', root_path %></li>
-  <li><%= link_to 'About', about_path %></li>
-  <li><%= link_to 'Cat Pictures', cat_pictures_path %></li>
-  <li><%= link_to 'Movies', movies_path %></li>
-</ul>
-<%= yield %>
+  <ul>
+    <li><h1><%= link_to 'Home', root_path %></h1></li>
+    <li><h1><%= link_to 'About', about_path %></h1></li>
+    <li><h1><%= link_to 'Cat Pictures', cat_pictures_path %></h1></li>
+    <li><h1><%= link_to 'Movies', movies_path %></h1></li>
+  </ul>
+  <%= yield %>
 
-<% flash.each do |type, message| %>
-<div class="<%= type %>">
-  <p><%= message %></p>
-</div>
-<% end %>
+  <% flash.each do |type, message| %>
+  <div class="<%= type %>">
+    <p><%= message %></p>
+  </div>
+  <% end %>
 
-<% if user_signed_in? %>
+  <% if user_signed_in? %>
   <li>Signed in as <%= current_user.email  %></li>
   <li><%= link_to "Sign Out", sign_out_path, method: :delete %></li>
-<% else %>
+  <% else %>
   <li><%= link_to "Sign In", sign_in_path %></li>
-<% end %>
-
+  <li><%= link_to "Sign Up", sign_up_path %></li>
+  <% end %>
 </body>
 </html>
